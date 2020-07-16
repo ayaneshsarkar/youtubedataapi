@@ -1,0 +1,249 @@
+:root {
+  --primary-color: #9E9E9E;
+  --light-primary-color: #F5F5F5;
+  /* --dark-primary-color: #616161; */
+  --dark-primary-color: #212121;
+  --seconday-color: #757575;
+  --danger-color: #D32F2F;
+  
+  --logo-font-size: 2rem;
+  --item-font-size: 1.6rem;
+
+  --heading-font-size: 2.5rem;
+
+  --primary-border: 1px solid #616161;
+  --primary-border-dark: 1px solid #212121;
+
+  --main-transition: all 0.3s linear;
+}
+
+*, *::after, *::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+*:focus {
+  outline: none;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--primary-color);
+  position: relative;
+  box-sizing: border-box;
+}
+
+*::placeholder {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 1.5rem;
+  color: var(--primary-color);
+}
+
+a {
+  text-decoration: none;
+}
+
+ul, li {
+  list-style: none;
+}
+
+input {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: var(--item-font-size);
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 1rem 2rem;
+  margin-bottom: 3rem;
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 1.9rem;
+  line-height: inherit;
+  text-align: center;
+  text-transform: uppercase;
+  transition: var(--main-transition);
+}
+
+.btn:hover {
+  cursor: pointer;
+}
+
+.btn-dark {
+  background-color: var(--dark-primary-color);
+  color: var(--light-primary-color);
+  transition: var(--main-transition);
+}
+
+.btn-dark:hover {
+  background-color: var(--danger-color);
+}
+
+/* HELPERS */
+.mid_margin {
+  margin-bottom: 2.5rem;
+}
+
+
+
+
+.container {
+  max-width: 120rem;
+  margin: 0 auto;
+  /* padding: 1.5rem 2rem; */
+}
+
+#navbar {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  padding: 1.5rem 2rem;
+  height: 6.5rem;
+  background-color: var(--dark-primary-color);
+}
+
+#navbar .navbar__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+/* NAVBAR LOGO */
+
+.navbar .navbar__content .navbar_logo {
+  color: var(--light-primary-color);
+  font-size: var(--logo-font-size);
+  letter-spacing: 0.5rem;
+  transition: var(--main-transition);
+}
+
+.navbar .navbar_content .navbar_logo:hover, .navbar_logo:active {
+  color: var(--primary-color);
+}
+
+/* NAVBAR ITEMS */
+
+.navbar .navbar_content .nav_items {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar .navbar_content .nav_items .nav_list a {
+  margin-right: 1rem;
+  color: var(--primary-color);
+  font-size: var(--item-font-size);
+  transition: var(--main-transition);
+}
+
+.navbar .navbar_content .nav_items .nav_list a:hover, a:active {
+  color: var(--light-primary-color);
+}
+
+
+
+
+
+
+
+/* FORM */
+
+#form {
+  /* display: none; */
+  width: 100%;
+  margin: 6.5rem 0;
+  padding: 5rem 0;
+}
+
+#form .form_heading {
+  display: block;
+  font-weight: 500;
+  color: var(--dark-primary-color);
+  font-size: var(--heading-font-size);
+  margin-bottom: 4.5rem;
+}
+
+#form .index_form {
+  width: 100%;
+}
+
+#form .inputbox {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+#form .inputbox label {
+  font-size: var(--item-font-size);
+  color: var(--seconday-color);
+  margin-bottom: 0.7rem;
+}
+
+#form .inputbox input {
+  font-family: inherit;
+  font-weight: 400;
+  padding: 1.7rem 2rem;
+  border: var(--primary-border);
+  transition: var(--main-transition);
+}
+
+#form .inputbox input:focus, input:active {
+  border: var(--primary-border-dark);
+}
+
+#form .inputbox .error {
+  display: none;
+  padding: 0.5rem 0;
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--danger-color);
+}
+
+#form .inputbox .activeError {
+  display: block;
+  padding: 0.5rem 0;
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--danger-color) !important;
+}
+
+#form .input_button {
+  display: block;
+  width: 100%;
+}
+
+.StripeElement {
+  display: block;
+  height: 5rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: var(--item-font-size);
+  padding: 1.5rem 2rem;
+  border: var(--primary-border);
+  transition: var(--main-transition);
+}
+
+.StripeElement--focus {
+  border: var(--primary-border-dark);
+}
+
+.StripeElement--invalid {
+  border-color: var(--danger-color);
+}
+
+#card-errors {
+  color: var(--danger-color);
+}
