@@ -49,7 +49,8 @@
         <div class="navbar_menu">
         <?php if(!isset($_SESSION['access_token'])): ?>
           <li class="navbar_menu-list"><a id="login" href="<?= $client->createAuthUrl(); ?>">LOGIN</a></li>
-        <?php else: ?>
+        <?php endif; ?>
+        <?php if(isset($_SESSION['access_token'])): ?>
           <li class="navbar_menu-list"><a id="logout" href="#">LOGOUT</a></li>
         <?php endif; ?>
         </div>
