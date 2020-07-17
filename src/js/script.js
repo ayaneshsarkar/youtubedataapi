@@ -2,9 +2,6 @@ const login = document.getElementById('login');
 const logut = document.getElementById('logout');
 const videoSearch = document.getElementById('videoSearch');
 
-// Hiding the Logout Button
-logout.style.display = 'none';
-
 /**
    * Sample JavaScript code for youtube.search.list
    * See instructions for running APIs Explorer code samples locally:
