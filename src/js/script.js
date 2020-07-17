@@ -44,4 +44,6 @@ const authenticate = async () => {
 
 
 
-//login.addEventListener('click', authenticate);
+// login.addEventListener('click', function() {
+//   document.getElementById('loginForm').submit();
+// });
