@@ -184,6 +184,12 @@ ul, li {
   background-color: var(--youtube-red);
 }
 
+.sessionEmail {
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 2rem;
+}
+
 
 
 

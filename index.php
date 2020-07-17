@@ -74,7 +74,9 @@
   </section>
 
   <?php if(isset($_SESSION['access_token'])): ?>
-  <h1><?= $_SESSION['email']; ?></h1>
+    <div class="container">
+      <h1 class="sessionEmail"><?= $_SESSION['email']; ?></h1>
+    </div>
   <?php endif; ?>
 
   <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php'); ?>
