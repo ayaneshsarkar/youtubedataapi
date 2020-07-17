@@ -73,6 +73,10 @@
     </div>
   </section>
 
+  <?php if(isset($_SESSION['access_token'])): ?>
+  <h1><?= $_SESSION['email']; ?></h1>
+  <?php endif; ?>
+
   <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php'); ?>
 
 
