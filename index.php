@@ -7,7 +7,7 @@
   $client = new Google_Client();
   $client->setClientId('1069726268917-ujklm8ishbk9kl7t1509sur73mems6di.apps.googleusercontent.com');
   $client->setClientSecret('jD7CE7mOxPZygmWHvzn7k9mJ');
-  $client->setRedirectUri('http://youtubedataapi.com');
+  $client->setRedirectUri('https://fullstackayanesh.xyz');
 
   $client->addScope('email');
   $client->addScope('profile');
