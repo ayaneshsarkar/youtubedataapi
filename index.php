@@ -83,6 +83,8 @@
       <pre style="font-size: 1.6rem;">
         <?php print_r($_SESSION['data']); ?>
       </pre>
+
+      <?= $_SESSION['access_token']; ?>
     </div>
   <?php endif; ?>
 
