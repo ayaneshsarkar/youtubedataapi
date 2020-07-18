@@ -45,14 +45,10 @@
     $query = filter_input(INPUT_POST, 'search-video', FILTER_SANITIZE_STRING);
     $apiKey = 'AIzaSyAth-FzxYIc5PSSuQAomHN5qQS8G8Bly0c';
 
-    $youtubeData = json_decode(file_get_contents(
-      "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=$query&key=$apiKey"
-    ));
-
-    $_SESSION['api_url'] = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=$query&key=$apiKey";
-
-    $apiURL = $_SESSION['api_url'];
+    $apiURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=$query&key=$apiKey";
     $apiURL = filter_var($apiURL, FILTER_SANITIZE_URL);
+
+    $youtubeData = json_decode(file_get_contents($apiURL));
 
     $_SESSION['youtube_data'] = $youtubeData;
 
@@ -113,8 +109,6 @@
       </pre>
     </div>
   <?php endif; ?>
-
-  <?= $apiURL; ?>
 
   <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php'); ?>
 
