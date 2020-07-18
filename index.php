@@ -43,6 +43,8 @@
   if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $query = filter_input(INPUT_POST, 'search-video', FILTER_SANITIZE_STRING);
+    $query = str_replace(' ', '+', $query);
+
     $apiKey = 'AIzaSyAth-FzxYIc5PSSuQAomHN5qQS8G8Bly0c';
 
     $apiURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=$query&key=$apiKey";
