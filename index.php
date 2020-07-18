@@ -105,7 +105,7 @@
   <?php if(isset($_SESSION['youtube_data'])): ?>
     <div class="container">
       <pre style="font-size: 1.6rem">
-        <?php print_r($_SESSION['youtube_data']); ?>
+        <?php //print_r($_SESSION['youtube_data']); ?>
         <?php foreach($_SESSION['youtube_data']->items as $item): ?>
           <?php if(isset($item->id->videoId)): ?>
             <?= $item->snippet->title; ?>
