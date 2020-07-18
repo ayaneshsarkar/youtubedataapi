@@ -51,7 +51,7 @@
 
     $apiKey = 'AIzaSyAth-FzxYIc5PSSuQAomHN5qQS8G8Bly0c';
 
-    $apiURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=$query&key=$apiKey";
+    $apiURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=$query&key=$apiKey";
     $apiURL = filter_var($apiURL, FILTER_SANITIZE_URL);
 
     $youtubeData = json_decode(file_get_contents($apiURL));
