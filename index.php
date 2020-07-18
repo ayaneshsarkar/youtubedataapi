@@ -27,6 +27,8 @@
     $oauth = new Google_Service_Oauth2($client);
     $data = $oauth->userinfo->get();
 
+    $_SESSION['data'] = $data;
+
   }
 
   
@@ -70,7 +72,7 @@
   <?php if(isset($_SESSION['access_token'])): ?>
     <div class="container">
       <pre style="font-size: 1.6rem;">
-        <?php print_r($data); ?>
+        <?php print_r($_SESSION['data']); ?>
       </pre>
     </div>
   <?php endif; ?>
