@@ -49,8 +49,7 @@
       "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=$query&key=$apiKey"
     ));
 
-    $_SESSION['api_url'] = "https://www.googleapis.com/youtube/v3/search?
-    part=snippet&maxResults=10&q=$query&key=$apiKey";
+    $_SESSION['api_url'] = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=$query&key=$apiKey";
 
     $_SESSION['youtube_data'] = $youtubeData;
 
