@@ -35,7 +35,7 @@
     
     session_destroy();
 
-    $client->revokeToken();
+    //$client->revokeToken();
 
     header('Location: /');
   }
