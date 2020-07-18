@@ -47,7 +47,7 @@
     $unfilteredQuery = filter_input(INPUT_POST, 'search-video', FILTER_SANITIZE_STRING);
     $query = str_replace(' ', '+', $unfilteredQuery);
 
-    $inputValue = $query;
+    $inputValue = htmlspecialchars($unfilteredQuery);
 
     $apiKey = 'AIzaSyAth-FzxYIc5PSSuQAomHN5qQS8G8Bly0c';
 
