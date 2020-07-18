@@ -110,20 +110,18 @@
   <?php endif; ?>
 
   <?php if(isset($_SESSION['youtube_data'])): ?>
-    <?php foreach($_SESSION['youtube_data']->items as $item): ?>
+    <section id="videoNames">
+      <div class="container">
+        <?php foreach($_SESSION['youtube_data']->items as $item): ?>
 
-      <?php if(!empty($item->id->videoId)): ?>
-
-        <section id="videoNames">
-          <div class="container">
+          <?php if(!empty($item->id->videoId)): ?>
             <h3><?= $item->snippet->title; ?></h3>
-          </div>
-        </section>
-        
-      <?php endif; ?>
+          <?php endif; ?>
 
+        <?php endforeach; ?>
 
-    <?php endforeach; ?>
+      </div>
+    </section>
   <?php endif; ?>
 
   <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php'); ?>
