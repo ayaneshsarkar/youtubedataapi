@@ -43,25 +43,13 @@
   if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $query = filter_input(INPUT_POST, 'search-video', FILTER_SANITIZE_STRING);
-    $client->setScopes(['https://www.googleapis.com/auth/youtube.force-ssl']);
+    $apiKey = 'AIzaSyAth-FzxYIc5PSSuQAomHN5qQS8G8Bly0c';
 
-    //define('STDIN',fopen("php://stdin","r"));
-    //$authCode = trim(fgets(STDIN));
+    $youtubeData = json_decode(file_get_contents(
+      "https://developers.google.com/apis-explorer/#p/youtube/v3/youtube.search.list?
+      part=snippet&maxResults=10&q=$query&key=$apiKey"
+    ));
 
-    // if(!isset($_SESSION['access_token'])) {
-    //   $accessToken = $client->fetchAccessTokenWithAuthCode($authCode);
-    //   $client->setAccessToken($accessToken);
-    // }
-
-    $youtubeService = new Google_Service_YouTube($client);
-
-    $queryParams = [
-      'maxResults' => 10,
-      'q' => $query
-      //'key' => 'AIzaSyAth-FzxYIc5PSSuQAomHN5qQS8G8Bly0c'
-    ];
-
-    $youtubeData = $youtubeService->search->listSearch('snippet', $queryParams, 'AIzaSyAth-FzxYIc5PSSuQAomHN5qQS8G8Bly0c');
     $_SESSION['youtube_data'] = $youtubeData;
 
   }
