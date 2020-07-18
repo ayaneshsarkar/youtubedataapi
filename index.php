@@ -8,10 +8,9 @@
 
   $client = new Google_Client();
   $client->setAuthConfig('client_secret.json');
-  $client->addScope(Google_Service_Drive::DRIVE_METADATA_READONLY);
+  $client->addScope('profile');
   $client->setRedirectUri('https://fullstackayanesh.xyz/loggedin');
-  // $client->setAccessType('offline');
-  // $client->setApprovalPrompt('consent');
+  $client->setAccessType('offline');
   $client->setIncludeGrantedScopes(true);
 
   $authURL = $client->createAuthUrl();
