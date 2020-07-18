@@ -51,6 +51,9 @@
 
     $_SESSION['api_url'] = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=$query&key=$apiKey";
 
+    $apiURL = $_SESSION['api_url'];
+    $apiURL = filter_var($apiURL, FILTER_SANITIZE_URL);
+
     $_SESSION['youtube_data'] = $youtubeData;
 
   }
@@ -111,7 +114,7 @@
     </div>
   <?php endif; ?>
 
-  <?= $_SESSION['api_url']; ?>
+  <?= $apiURL; ?>
 
   <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php'); ?>
 
