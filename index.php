@@ -44,8 +44,8 @@
 
   if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    $query = filter_input(INPUT_POST, 'search-video', FILTER_SANITIZE_STRING);
-    $query = str_replace(' ', '+', $query);
+    $unfilteredQuery = filter_input(INPUT_POST, 'search-video', FILTER_SANITIZE_STRING);
+    $query = str_replace(' ', '+', $unfilteredQuery);
 
     $inputValue = $query;
 
