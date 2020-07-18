@@ -32,9 +32,10 @@
   }
 
   if(isset($_GET['logout'])) {
-    // $client->revokeToken();
     
     session_destroy();
+
+    $client->revokeToken();
 
     header('Location: /');
   }
