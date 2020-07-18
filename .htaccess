@@ -2,3 +2,4 @@ RewriteEngine On
 
 RewriteRule ^/?$ /index.php
 RewriteRule ^loggedin?$ /index.php
+RewriteRule ^loggedout?$ /index.php

@@ -31,6 +31,13 @@
 
   }
 
+  if(isset($_GET['logout'])) {
+    $client->revokeToken();
+    session_destroy();
+
+    header('Location: /');
+  }
+
   
   
 
@@ -46,7 +53,7 @@
           <li class="navbar_menu-list"><a id="login" href="<?= $authURL; ?>">LOGIN</a></li>
         <?php endif; ?>
         <?php if(isset($_SESSION['access_token'])): ?>
-          <li class="navbar_menu-list"><a id="logout" href="#">LOGOUT</a></li>
+          <li class="navbar_menu-list"><a id="logout" href="/?logout=true">LOGOUT</a></li>
         <?php endif; ?>
         </div>
       </div>
