@@ -32,11 +32,7 @@
   }
 
   if(isset($_GET['logout'])) {
-    $success = $client->revokeToken();
-
-    if(!$success) {
-      header('Location: test.php');
-    }
+    // $client->revokeToken();
     
     session_destroy();
 
