@@ -45,13 +45,13 @@
     $query = filter_input(INPUT_POST, 'search-video', FILTER_SANITIZE_STRING);
     $client->setScopes(['https://www.googleapis.com/auth/youtube.force-ssl']);
 
-    define('STDIN',fopen("php://stdin","r"));
-    $authCode = trim(fgets(STDIN));
+    //define('STDIN',fopen("php://stdin","r"));
+    //$authCode = trim(fgets(STDIN));
 
-    if(!isset($_SESSION['access_token'])) {
-      $accessToken = $client->fetchAccessTokenWithAuthCode($authCode);
-      $client->setAccessToken($accessToken);
-    }
+    // if(!isset($_SESSION['access_token'])) {
+    //   $accessToken = $client->fetchAccessTokenWithAuthCode($authCode);
+    //   $client->setAccessToken($accessToken);
+    // }
 
     $youtubeService = new Google_Service_YouTube($client);
 
