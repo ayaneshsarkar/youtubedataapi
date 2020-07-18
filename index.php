@@ -46,7 +46,7 @@
     $apiKey = 'AIzaSyAth-FzxYIc5PSSuQAomHN5qQS8G8Bly0c';
 
     $youtubeData = json_decode(file_get_contents(
-      "https://developers.google.com/apis-explorer/#p/youtube/v3/youtube.search.list?
+      "https://www.googleapis.com/youtube/v3/search?
       part=snippet&maxResults=10&q=$query&key=$apiKey"
     ));
 
@@ -96,7 +96,7 @@
     <div class="container">
       <pre style="font-size: 1.6rem;">
         <?php print_r($_SESSION['data']); ?>
-        <?php print_r($_SESSION['access_token']); ?>
+        <?php //print_r($_SESSION['access_token']); ?>
       </pre>
 
     </div>
