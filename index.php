@@ -57,7 +57,8 @@
 
     $queryParams = [
       'maxResults' => 10,
-      'q' => $query
+      'q' => $query,
+      'key' => 'AIzaSyAth-FzxYIc5PSSuQAomHN5qQS8G8Bly0c'
     ];
 
     $youtubeData = $youtubeService->search->listSearch('snippet', $queryParams);
