@@ -34,8 +34,7 @@
   if(isset($_GET['logout'])) {
     $client->revokeToken();
     
-    unset($_SESSION['access_token']);
-    unset($_SESSION['data']);
+    session_destroy();
 
     header('Location: /');
   }
@@ -49,10 +48,10 @@
       <div class="navbar__content">
         <a href="#" class="navbar_logo">YOUTUBE API</a>
         <div class="navbar_menu">
-        <?php if(!isset($_SESSION['access_token']) && $_SESSION['access_token']): ?>
+        <?php if(!isset($_SESSION['access_token'])): ?>
           <li class="navbar_menu-list"><a id="login" href="<?= $authURL; ?>">LOGIN</a></li>
         <?php endif; ?>
-        <?php if(isset($_SESSION['access_token']) && $_SESSION['access_token']): ?>
+        <?php if(isset($_SESSION['access_token'])): ?>
           <li class="navbar_menu-list">
             <a id="logout" href="/?logout">LOGOUT</a>
           </li>
