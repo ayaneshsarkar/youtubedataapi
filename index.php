@@ -46,8 +46,7 @@
     $apiKey = 'AIzaSyAth-FzxYIc5PSSuQAomHN5qQS8G8Bly0c';
 
     $youtubeData = json_decode(file_get_contents(
-      "https://www.googleapis.com/youtube/v3/search?
-      part=snippet&maxResults=10&q=$query&key=$apiKey"
+      "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=$query&key=$apiKey"
     ));
 
     $_SESSION['api_url'] = "https://www.googleapis.com/youtube/v3/search?
