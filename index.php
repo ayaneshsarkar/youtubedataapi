@@ -39,6 +39,29 @@
 
     header('Location: /');
   }
+
+  if($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+    $query = filter_input(INPUT_POST, 'search-video', FILTER_SANITIZE_STRING);
+    $client->setScopes(['https://www.googleapis.com/auth/youtube.force-ssl']);
+    $authCode = trim(fgets(STDIN));
+
+    if(!isset($_SESSION['access_token'])) {
+      $accessToken = $client->fetchAccessTokenWithAuthCode($authCode);
+      $client->setAccessToken($accessToken);
+    }
+
+    $youtubeService = new Google_Service_YouTube($client);
+
+    $queryParams = [
+      'maxResults' => 10,
+      'q' => $query
+    ];
+
+    $youtubeData = $youtubeService->search->listSearch('snippet', $queryParams);
+    $_SESSION['youtube_data'] = $youtubeData;
+
+  }
   
 
 ?>
@@ -65,14 +88,14 @@
   <!-- Form Section -->
   <section id="form">
     <div class="container">
-      <form action="#" method="POST" class="index-form">
+      <form action="/" method="POST" class="index-form">
         <div class="inputbox">
           <label for="search-video">Search Videos</label>
           <input type="text" placeholder="Search Videos" name="search-video" id="videoSearch">
         </div>
 
         <div class="input_button">
-          <button class="btn btn-dark">Search</button>
+          <button type="submit" class="btn btn-dark">Search</button>
         </div>
       </form>
     </div>
@@ -85,6 +108,14 @@
         <?php print_r($_SESSION['access_token']); ?>
       </pre>
 
+    </div>
+  <?php endif; ?>
+
+  <?php if(isset($_SESSION['youtube_data'])): ?>
+    <div class="container">
+      <pre style="font-size: 1.6rem">
+        <?php print_r($_SESSION['youtube_data']); ?>
+      </pre>
     </div>
   <?php endif; ?>
 
