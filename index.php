@@ -4,40 +4,34 @@
 
 <?php 
 
-  $client = new Google_Client();
-  $client->setClientId('1069726268917-ujklm8ishbk9kl7t1509sur73mems6di.apps.googleusercontent.com');
-  $client->setClientSecret('jD7CE7mOxPZygmWHvzn7k9mJ');
-  $client->setRedirectUri('https://fullstackayanesh.xyz');
-
-  $client->addScope('email');
-  $client->addScope('profile');
-
   session_start();
+
+  $client = new Google_Client();
+  $client->setAuthConfig('client_secret.json');
+  $client->addScope(Google_Service_Drive::DRIVE_METADATA_READONLY);
+  $client->setRedirectUri('https://fullstackayanesh.xyz/loggedin');
+  $client->setAccessType('offline');
+  $client->setApprovalPrompt('consent');
+  $client->setIncludeGrantedScopes(true);
+
+  $authURL = $client->createAuthUrl();
+  $authURL = filter_var($authURL, FILTER_SANITIZE_URL);
 
   if(isset($_GET['code'])) {
 
-    $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
+    $client->authenticate($_GET['code']);
+    $accessToken = $client->getAccessToken();
 
-    if(!isset($token['error'])) {
-      $client->setAccessToken($token['access_token']);
+    $client->setAccessToken($accessToken);
+    $_SESSION['access_token'] = $accessToken;
 
-      $_SESSION['access_token'] = $token['access_token'];
-
-      $service = new Google_Service_Oauth2($client);
-
-      $data = $service->userinfo->get();
-
-      if(!empty($data['given_name'])) {
-        $_SESSION['first_name'] = $data['given_name'];
-      }
-
-      if(!empty($data['email'])) {
-        $_SESSION['email'] = $data['email'];
-      }
-    }
+    $oauth = new Google_Service_Oauth2($client);
+    $data = $oauth->userinfo->get();
 
   }
 
+  
+  
 
 ?>
 
@@ -76,7 +70,9 @@
 
   <?php if(isset($_SESSION['access_token'])): ?>
     <div class="container">
-      <h1 class="sessionEmail"><?= $_SESSION['email']; ?></h1>
+      <pre style="font-size: 1.6rem;">
+        <?php print_r($data); ?>
+      </pre>
     </div>
   <?php endif; ?>
 
