@@ -84,6 +84,8 @@
     </div>
   <?php endif; ?>
 
+  <?= $_SERVER['HTTP_HOST']; ?>
+
   <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php'); ?>
 
 
