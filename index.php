@@ -40,10 +40,14 @@
     header('Location: /');
   }
 
+  $inputValue = '';
+
   if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $query = filter_input(INPUT_POST, 'search-video', FILTER_SANITIZE_STRING);
     $query = str_replace(' ', '+', $query);
+
+    $inputValue = $query;
 
     $apiKey = 'AIzaSyAth-FzxYIc5PSSuQAomHN5qQS8G8Bly0c';
 
@@ -84,7 +88,8 @@
       <form action="/" method="POST" class="index-form">
         <div class="inputbox">
           <label for="search-video">Search Videos</label>
-          <input type="text" placeholder="Search Videos" name="search-video" id="videoSearch">
+          <input type="text" placeholder="Search Videos" name="search-video" id="videoSearch"
+          value="<?= ($inputValue != '') ? $inputValue : '' ?>">
         </div>
 
         <div class="input_button">
