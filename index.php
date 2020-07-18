@@ -61,7 +61,7 @@
       //'key' => 'AIzaSyAth-FzxYIc5PSSuQAomHN5qQS8G8Bly0c'
     ];
 
-    $youtubeData = $youtubeService->search->listSearch('snippet', $queryParams);
+    $youtubeData = $youtubeService->search->listSearch('snippet', $queryParams, 'AIzaSyAth-FzxYIc5PSSuQAomHN5qQS8G8Bly0c');
     $_SESSION['youtube_data'] = $youtubeData;
 
   }
