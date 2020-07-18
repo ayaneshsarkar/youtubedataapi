@@ -52,7 +52,7 @@
         <?php endif; ?>
         <?php if(isset($_SESSION['access_token'])): ?>
           <li class="navbar_menu-list">
-            <a id="logout" href="?logout=true">LOGOUT</a>
+            <a id="logout" href="/?logout">LOGOUT</a>
           </li>
         <?php endif; ?>
         </div>
