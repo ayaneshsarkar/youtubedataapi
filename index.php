@@ -125,14 +125,3 @@
   <?php endif; ?>
 
   <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php'); ?>
-
-
-
-
-
-  <!-- <form action="/" method="GET" id="loginForm" style="display: none">
-          <input type="hidden" name="login" value="true">
-        </form>
-        <form action="/" method="GET" id="logoutForm" style="display: none">
-          <input type="hidden" name="logout">
-        </form> -->
