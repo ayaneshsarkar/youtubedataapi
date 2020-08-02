@@ -1,46 +1,62 @@
+import axios from 'axios';
 const login = document.getElementById('login');
-const logut = document.getElementById('logout');
-const videoSearch = document.getElementById('videoSearch');
 
-/**
-   * Sample JavaScript code for youtube.search.list
-   * See instructions for running APIs Explorer code samples locally:
-   * https://developers.google.com/explorer-help/guides/code_samples#javascript
-*/
+window.fbAsyncInit = function() {
+  FB.init({
+    appId      : '297048008200610',
+    cookie     : true,
+    xfbml      : true,
+    version    : 'v6.0'
+  });
+    
+  FB.AppEvents.logPageView();   
+    
+};
 
-const loadClient = async () => {
 
-  // Setting The API & oAUTH URL
-  gapi.client.setApiKey('AIzaSyAth-FzxYIc5PSSuQAomHN5qQS8G8Bly0c');
-  const oauthURL = "https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest";
+if(login) {
+  login.addEventListener('click', function() {
 
-  try {
-    const load = await gapi.client.load(oauthURL);
-    return load;
-  } catch (err) {
-    console.log(err);
-  }
-
+    FB.login(function(response) {
+      if(response.authResponse) {
+        facebookAfterLogin();
+      }
+    });
+    
+  });
 }
 
-// Authenticate OAuth 2.0
-const authenticate = async () => {
 
-  // Auth URL
-  const authURL = "https://www.googleapis.com/auth/youtube.force-ssl";
 
-  // Getting The Data
-  try {
-    return (await gapi.auth2.getAuthInstance()).signIn({scope: authURL});
-    loadClient();
-  } catch(error) {
-    console.log(error.message);
-  }
+
+  function facebookAfterLogin() {
   
-}
+    FB.getLoginStatus(function(response) {
+  
+      if(response.status == 'connected') {
+        FB.api('/me?fields=name,email,picture,id', function(resp) {
+          const data = {
+            name: resp.name,
+            id: resp.id,
+            email: resp.email
+          };
+
+          const response =  axios.post('/fb', data).then(function(res) {
+            window.location.href = '/';
+          });
+          
+        });
+      }
+  
+    });
+  
+  }
 
 
-
-// login.addEventListener('click', function() {
-//   document.getElementById('loginForm').submit();
-// });
+(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));

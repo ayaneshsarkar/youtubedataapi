@@ -1,15 +1,19 @@
-<?php require_once($_SERVER['DOCUMENT_ROOT'] . '/includes/header.php'); ?>
-<?php require_once __DIR__ . '/vendor/autoload.php'; ?>
+<?php require_once(__DIR__ . '/includes/header.php'); ?>
+<?php require_once(__DIR__ . '/vendor/autoload.php'); ?>
+
+<!-- FOR GOOGLE -->
 
 
-<?php 
+<?php /*
+
+  $redirectURI = 'https://fullstackayanesh.xyz/loggedin';
 
   session_start();
 
   $client = new Google_Client();
   $client->setAuthConfig('client_secret.json');
   $client->addScope('profile');
-  $client->setRedirectUri('https://fullstackayanesh.xyz/loggedin');
+  $client->setRedirectUri($redirectURI);
   $client->setAccessType('offline');
   $client->setIncludeGrantedScopes(true);
 
@@ -17,28 +21,34 @@
   $authURL = filter_var($authURL, FILTER_SANITIZE_URL);
 
   if(isset($_GET['code'])) {
-
     $client->authenticate($_GET['code']);
     $accessToken = $client->getAccessToken();
-
-    $client->setAccessToken($accessToken);
     $_SESSION['access_token'] = $accessToken;
+    header('Location: ' . filter_var($redirectURI, FILTER_SANITIZE_URL));
+  }
+
+  if(isset($_SESSION['access_token'])) {
+    $client->setAccessToken($_SESSION['access_token']);
 
     $oauth = new Google_Service_Oauth2($client);
     $data = $oauth->userinfo->get();
 
     $_SESSION['data'] = $data;
-
   }
 
   if(isset($_GET['logout'])) {
-    
-    session_destroy();
 
-    //$client->revokeToken();
+    unset($_SESSION['access_token']);
+    unset($_SESSION['data']);
+
+    $client->revokeToken();
+
+    session_destroy();
 
     header('Location: /');
   }
+
+  */
 
   $inputValue = '';
 
@@ -63,16 +73,96 @@
 
 ?>
 
+
+<!-- FOR FACEBOOK -->
+<?php
+/*
+  session_start();
+
+  $fb = new Facebook\Facebook([
+    'app_id' => '297048008200610',
+    'app_secret' => 'eae5abb7f5bfcb89dc075b16c0d529a4',
+    'default_graph_version' => 'v2.3',
+    // . . .
+  ]);
+
+
+  $helper = $fb->getRedirectLoginHelper();
+
+  $accessToken = $helper->getAccessToken();
+  $_SESSION['access_token'] = $aToken;
+
+  // if(isset($_SESSION['access_token'])) {
+  //   $aToken = $_SESSION['access_token'];
+  // } else {
+  //   $aToken = $helper->getAccessToken();
+  // }
+
+  if(isset($aToken)) {
+
+    if(isset($_SESSION['access_token'])) {
+      $fb->setDefaultAccessToken($_SESSION['access_token']);
+    } else {
+      $_SESSION['access_token'] = (string) $aToken;
+
+      $oAuth2Client = $fb->getOAuth2Client();
+
+      $longLiveAccessToken = $oAuth2Client->getLongLivedAccessToken($_SESSION['access_token']);
+      $_SESSION['access_token'] = (string) $longLiveAccessToken;
+
+      $fb->setDefaultAccessToken($_SESSION['access_token']);
+    }
+
+  }
+
+  if(isset($_GET['code'])) {
+    header('Location: /');
+  }
+
+  $graphResponse = $fb->get("me?fields=name,email,picture");
+  $fbUser = $graphResponse->getGraphUser();
+
+  $_SESSION['username'] = $fbUser;
+
+  $permissions = ['email'];
+  $fbLoginURL = $helper->getLoginUrl("https://fullstackayanesh.xyz/loggedin", $permissions);
+
+  if($_GET['logout']) {
+    unset($_SESSION['access_token']);
+    unset($_SESSION['username']);
+
+    session_destroy();
+
+    header('Location: /');
+  }
+*/
+
+  session_start();
+
+  if(isset($_GET['logout'])) {
+    unset($_SESSION['username']);
+    unset($_SESSION['fb_id']);
+
+    session_destroy();
+    header('Location: /');
+  }
+
+
+  
+?>
+
   <!-- Navbar -->
   <nav id="navbar">
     <div class="container">
       <div class="navbar__content">
-        <a href="#" class="navbar_logo">YOUTUBE API</a>
+        <a href="/" class="navbar_logo">YOUTUBE API</a>
         <div class="navbar_menu">
-        <?php if(!isset($_SESSION['access_token'])): ?>
-          <li class="navbar_menu-list"><a id="login" href="<?= $authURL; ?>">LOGIN</a></li>
+        <?php if(!isset($_SESSION['fb_id'])): ?>
+          <li class="navbar_menu-list" id="login">
+            <a href="#">LOGIN</a>
+          </li>
         <?php endif; ?>
-        <?php if(isset($_SESSION['access_token'])): ?>
+        <?php if(isset($_SESSION['fb_id'])): ?>
           <li class="navbar_menu-list">
             <a id="logout" href="/?logout">LOGOUT</a>
           </li>
@@ -99,13 +189,11 @@
     </div>
   </section>
 
-  <?php if(isset($_SESSION['access_token'])): ?>
+  <?php if(isset($_SESSION['fb_id'])): ?>
     <div class="container">
       <pre style="font-size: 1.6rem;">
-        <?= $_SESSION['data']['email']; ?>
-        <?php //print_r($_SESSION['access_token']); ?>
+        <?= $_SESSION['email']; ?>
       </pre>
-
     </div>
   <?php endif; ?>
 
@@ -124,4 +212,5 @@
     </section>
   <?php endif; ?>
 
-  <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php'); ?>
+  <!-- <script src="./js/index.js"></script> -->
+  <?php require_once(__DIR__ . '/includes/footer.php'); ?>
