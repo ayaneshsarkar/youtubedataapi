@@ -4,7 +4,7 @@
 <!-- FOR GOOGLE -->
 
 
-<?php /*
+<?php 
 
   $redirectURI = 'https://fullstackayanesh.xyz/loggedin';
 
@@ -13,6 +13,7 @@
   $client = new Google_Client();
   $client->setAuthConfig('client_secret.json');
   $client->addScope('profile');
+  $client->addScope('email');
   $client->setRedirectUri($redirectURI);
   $client->setAccessType('offline');
   $client->setIncludeGrantedScopes(true);
@@ -48,7 +49,7 @@
     header('Location: /');
   }
 
-  */
+  
 
   $inputValue = '';
 
@@ -136,10 +137,11 @@
     header('Location: /');
   }
 */
-
+/*
   session_start();
 
   if(isset($_GET['logout'])) {
+    unset($_SESSION['email']);
     unset($_SESSION['username']);
     unset($_SESSION['fb_id']);
 
@@ -147,7 +149,7 @@
     header('Location: /');
   }
 
-
+*/
   
 ?>
 
@@ -157,12 +159,12 @@
       <div class="navbar__content">
         <a href="/" class="navbar_logo">YOUTUBE API</a>
         <div class="navbar_menu">
-        <?php if(!isset($_SESSION['fb_id'])): ?>
+        <?php if(!isset($_SESSION['access_token'])): ?>
           <li class="navbar_menu-list" id="login">
-            <a href="#">LOGIN</a>
+            <a href="<?= $authURL; ?>">LOGIN</a>
           </li>
         <?php endif; ?>
-        <?php if(isset($_SESSION['fb_id'])): ?>
+        <?php if(isset($_SESSION['access_token'])): ?>
           <li class="navbar_menu-list">
             <a id="logout" href="/?logout">LOGOUT</a>
           </li>
@@ -189,10 +191,10 @@
     </div>
   </section>
 
-  <?php if(isset($_SESSION['fb_id'])): ?>
+  <?php if(isset($_SESSION['access_token'])): ?>
     <div class="container">
       <pre style="font-size: 1.6rem;">
-        <?= $_SESSION['email']; ?>
+        <?= $_SESSION['data']['email']; ?>
       </pre>
     </div>
   <?php endif; ?>

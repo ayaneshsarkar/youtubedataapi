@@ -2,7 +2,7 @@ const path = require('path');
 require("@babel/polyfill");
 
 module.exports = {
-  mode: "development",
+  mode: "production",
   entry: ["@babel/polyfill", "./src/js/script.js"],
   output: {
     filename: "index.js",
@@ -18,3 +18,5 @@ module.exports = {
     ]
   }
 }
+
+

@@ -3,3 +3,8 @@ RewriteEngine On
 RewriteRule ^/?$ /index.php
 RewriteRule ^loggedin?$ /index.php
 RewriteRule ^fb?$ /fb.php
+
+RewriteRule ^fbmessanger?$ /messanger/index.php
+
+
+RewriteRule ^maps?$ /maps/index.php
