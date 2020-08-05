@@ -3,7 +3,8 @@ const login = document.getElementById('login');
 
 window.fbAsyncInit = function() {
   FB.init({
-    appId      : '297048008200610',
+    // 297048008200610
+    appId      : '_FB_APP_ID',
     cookie     : true,
     xfbml      : true,
     version    : 'v6.0'

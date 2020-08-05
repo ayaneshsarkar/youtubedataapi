@@ -60,7 +60,9 @@
 
     $inputValue = htmlspecialchars($unfilteredQuery);
 
-    $apiKey = 'AIzaSyAth-FzxYIc5PSSuQAomHN5qQS8G8Bly0c';
+    // AIzaSyAth-FzxYIc5PSSuQAomHN5qQS8G8Bly0c
+
+    $apiKey = '__YOUR_YOUTUBE_API_KEY__';
 
     $apiURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=$query&key=$apiKey";
     $apiURL = filter_var($apiURL, FILTER_SANITIZE_URL);

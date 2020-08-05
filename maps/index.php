@@ -16,9 +16,10 @@
     </div>
   </div>
   
+  <!-- AIzaSyBLzBKwQyJJ_TvGf6atpmgN7NZw3BBMJjY -->
 
   <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-XZddyoFng-QErtNGYaAz6IQMJxgPdc8&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key=_YOUR_API_KEY_&callback=initMap">
   </script>
   <script src="../js/maps.js"></script>
 </body>
