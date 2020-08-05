@@ -1,5 +1,7 @@
 node_modules/
 vendor
+/client_secret.json
 composer.lock
 /package-lock.json
-youtubedataapi.zip
+
+/youtubedataapi.zip
