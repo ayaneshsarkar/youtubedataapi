@@ -22,7 +22,7 @@
   $authURL = filter_var($authURL, FILTER_SANITIZE_URL);
 
   if(isset($_GET['code'])) {
-    $client->authenticate($_GET['code']);
+    $client->fetchAccessTokenWithAuthCode($_GET['code']);
     $accessToken = $client->getAccessToken();
     $_SESSION['access_token'] = $accessToken;
     header('Location: ' . filter_var($redirectURI, FILTER_SANITIZE_URL));
